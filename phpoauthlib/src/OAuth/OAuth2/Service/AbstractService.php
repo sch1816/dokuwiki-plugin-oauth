@@ -99,7 +99,7 @@ abstract class AbstractService extends BaseAbstractService implements ServiceInt
      */
     public function requestAccessToken($code, $state = null)
     {
-        if (null !== $state) {
+        if (null !== $state && '' !== $state) {
             $this->validateAuthorizationState($state);
         }
 

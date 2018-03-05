@@ -1,3 +1,8 @@
+Authsch & oauth plugin for DokuWiki
+
+This plugin is very useful if a wiki is to be accessed by lots of VIK students. Using AuthSCH, their account is created automatically, and their permissions can be synchronised using the data from VIR.
+
+
 oauth Plugin for DokuWiki
 
 Generic oAuth plugin to login via various services
