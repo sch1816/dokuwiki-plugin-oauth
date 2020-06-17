@@ -15,7 +15,7 @@ class AuthschAdapter extends AbstractAdapter {
      */
     public function getUser() {
         // vir circle id to dokuwiki group
-        $circles2groups = array(
+        /*$circles2groups = array(
             434 => 'cc',
             56 => 'dezso',
             357 => 'hetifonok',
@@ -23,7 +23,12 @@ class AuthschAdapter extends AbstractAdapter {
             421 => 'lanosch',
             393 => 'parkett',
             137 => 'szakest'
-        );
+        );*/
+        global $conf;
+        
+        $circles2groups = json_decode($this->hlp->getAuthschSetting('circles-json'), true);
+        $roles2groups = json_decode($this->hlp->getAuthschSetting('roles-json'), true);
+
         $JSON = new \JSON(JSON_LOOSE_TYPE);
         $data = array();
 
@@ -37,8 +42,10 @@ class AuthschAdapter extends AbstractAdapter {
             if(isset($circles2groups[$circle['id']])){
                 $data['grps'][]=$circles2groups[$circle['id']];
                 if($circle['status']=='tag'){
-                    if(in_array('gazdaságis',$circle['title'])){
-                        $data['grps'][]='gazdasagis';
+                    foreach($roles2groups as $rol => $grp){
+                        if(in_array($rol,$circle['title'])){
+                            $data['grps'][]=$grp;
+                        }
                     }
                 }else if($circle['status']=='körvezető'){
                     $data['grps'][]='korvez';
@@ -47,7 +54,9 @@ class AuthschAdapter extends AbstractAdapter {
             
         }
         if(count($data['grps'])==0)return null;
-        //if(count($data['grps'])>0)$data['grps'][]='user';
+        if($this->hlp->getAuthschSetting('allow-outside-circles')){
+            if(count($data['grps'])>0)$data['grps'][]='user';
+        }
         
         return $data;
     }

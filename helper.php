@@ -202,6 +202,10 @@ class helper_plugin_oauth extends DokuWiki_Plugin {
         global $updateVersion;
         return isset($updateVersion);
     }
+    
+    public function getAuthschSetting($key) {
+        return $this->getConf('authsch-'.$key);
+    }
 }
 
 // vim:ts=4:sw=4:et:

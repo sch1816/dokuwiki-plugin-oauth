@@ -11,7 +11,7 @@ class setting_plugin_oauth extends setting {
         return true;
     }
 
-    public function html(&$plugin, $echo = false) {
+    public function html(admin_plugin_config $plugin, $echo = false) {
         /** @var helper_plugin_oauth $hlp */
         $hlp = plugin_load('helper', 'oauth');
 
@@ -26,18 +26,27 @@ class setting_plugin_oauth extends setting {
 }
 
 $meta['info']                = array('plugin_oauth');
+/*
 $meta['auth0-key']           = array('string');
 $meta['auth0-secret']        = array('string');
 $meta['auth0-domain']        = array('string');
 $meta['custom-redirectURI']  = array('string','_caution' => 'warning');
+*/
 $meta['facebook-key']        = array('string');
 $meta['facebook-secret']     = array('string');
 $meta['github-key']          = array('string');
 $meta['github-secret']       = array('string');
+
 $meta['authsch-key']          = array('string');
 $meta['authsch-secret']       = array('string');
+
+$meta['authsch-circles-json']       = array('');
+$meta['authsch-roles-json']       = array('');
+$meta['authsch-allow-outside-circles']    = array('onoff');
+
 $meta['google-key']          = array('string');
 $meta['google-secret']       = array('string');
+/*
 $meta['dataporten-key']      = array('string');
 $meta['dataporten-secret']   = array('string');
 $meta['keycloak-key']        = array('string');
@@ -51,6 +60,7 @@ $meta['doorkeeper-key']      = array('string');
 $meta['doorkeeper-secret']   = array('string');
 $meta['doorkeeper-authurl']  = array('string');
 $meta['doorkeeper-tokenurl'] = array('string');
+*/
 $meta['mailRestriction']     = array('string','_pattern' => '!^(@[^,@]+(\.[^,@]+)+(,|$))*$!'); // https://regex101.com/r/mG4aL5/3
 $meta['singleService']       = array('multichoice',
                                      '_choices' => array(
@@ -64,3 +74,4 @@ $meta['singleService']       = array('multichoice',
                                          'Yahoo',
                                          'Doorkeeper',
                                          'Keycloak'));
+$meta['register-on-auth']    = array('onoff','_caution' => 'security');
