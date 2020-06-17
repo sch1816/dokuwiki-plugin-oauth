@@ -1,7 +1,7 @@
 base   oauth
-author Andreas Gohr / Aron Szabo
-email  dokuwiki@cosmocode.de
+author Aron Szabo // Andreas Gohr 
+email  sa@sch.bme.hu
 name   oauth plugin / authsch modified
 date   2020-06-04
-desc   Generic oAuth plugin to login via various services
+desc   Generic oAuth plugin to login via various services and AuthSCH
 url    https://github.com/sch1816/dokuwiki-plugin-oauth
